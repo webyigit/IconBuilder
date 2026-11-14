@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>오픈소스 아이콘 갤러리</title>
+  <meta name="description" content="상업 이용 가능한 오픈소스 아이콘 100여 개 스타일을 골라 보고 SVG·PNG로 바로 복사·다운로드">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%233b5bdb'/%3E%3Cpath d='M6 6h5v5H6zM13 6h5v5h-5zM6 13h5v5H6zM13 13h5v5h-5z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <a class="skip" href="#grid">아이콘 목록 바로가기</a>
+  <header class="top">
+    <a class="back" href="../" aria-label="아이콘 빌더로 돌아가기">← 아이콘 빌더</a>
+    <h1 class="brand"><span class="logo" aria-hidden="true"></span>아이콘 갤러리</h1>
+    <span class="stat" id="stat"></span>
+    <a class="lic-link" href="https://github.com/webyigit/IconBuilder/blob/main/gallery/LICENSES.md" target="_blank" rel="noopener">라이선스</a>
+  </header>
+
+  <div class="layout">
+    <aside class="side" aria-label="스타일 선택">
+      <div class="side-head">
+        <label class="sr" for="styleSearch">스타일 검색</label>
+        <input id="styleSearch" type="search" placeholder="스타일 검색 (예: outline, solar)" autocomplete="off">
+        <div class="chips" id="cats" role="group" aria-label="분류"></div>
+      </div>
+      <label class="sr" for="styleSelect">스타일</label>
+      <select id="styleSelect" class="mobile-select"></select>
+      <ul class="styles" id="styles" role="listbox" aria-label="스타일 목록"></ul>
+    </aside>
+
+    <main class="main" id="main">
+      <section class="style-info" id="info" aria-live="polite"></section>
+
+      <div class="toolbar">
+        <label class="sr" for="q">아이콘 검색</label>
+        <input id="q" type="search" placeholder="아이콘 이름 검색 (영문: home, user, arrow…)" autocomplete="off">
+        <label class="ctl" title="아이콘 색 (단색 스타일만)">색
+          <input id="color" type="color" value="#1a1d29">
+        </label>
+        <label class="ctl">크기
+          <input id="size" type="range" min="16" max="64" step="4" value="32">
+        </label>
+        <button id="zipBtn" class="primary">이 스타일 ZIP</button>
+        <button id="zipAllBtn">전체 ZIP</button>
+      </div>
+
+      <p class="hint" id="count"></p>
+      <ul class="grid" id="grid" aria-label="아이콘"></ul>
+    </main>
+  </div>
+
+  <dialog id="dlg" aria-labelledby="dlgTitle">
+    <form method="dialog" class="dlg-close"><button aria-label="닫기">✕</button></form>
+    <div class="dlg-body">
+      <div class="preview" id="pv"></div>
+      <div class="dlg-side">
+        <h2 id="dlgTitle"></h2>
+        <p class="muted" id="dlgMeta"></p>
+        <div class="btns">
+          <button id="copySvg" class="primary">SVG 코드 복사</button>
+          <button id="copyPng">PNG 이미지 복사</button>
+          <button id="dlSvg">SVG 다운로드</button>
+          <button id="dlPng">PNG 다운로드</button>
+        </div>
+        <label class="ctl">PNG 크기
+          <select id="pngSize"><option>64</option><option>128</option><option selected>256</option><option>512</option><option>1024</option></select>
+        </label>
+        <label class="ctl" for="code">SVG 코드</label>
+        <textarea id="code" readonly rows="6" spellcheck="false"></textarea>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="vendor/jszip.min.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>
