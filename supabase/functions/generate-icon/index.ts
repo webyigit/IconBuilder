@@ -9,7 +9,7 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 const anthropic = new Anthropic({ apiKey: Deno.env.get("ANTHROPIC_API_KEY") });
 const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
 
-const ORIGINS = (Deno.env.get("ALLOWED_ORIGIN") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+const ORIGINS = (Deno.env.get("ALLOWED_ORIGIN") ?? "https://webyigit.github.io").split(",").map((s) => { try { return new URL(s.trim()).origin; } catch { return s.trim(); } }).filter(Boolean);
 const ACCESS_CODE = Deno.env.get("ACCESS_CODE") ?? "";
 const USER_LIMIT = Number(Deno.env.get("USER_DAILY_LIMIT") ?? 20);
 const GLOBAL_LIMIT = Number(Deno.env.get("GLOBAL_DAILY_LIMIT") ?? 200);
@@ -17,8 +17,9 @@ const MEDIA = ["image/png", "image/jpeg", "image/gif", "image/webp"];
 const MAX_BODY = 3_000_000; // base64 약 2MB 이미지
 
 function corsFor(req: Request) {
-  const origin = req.headers.get("origin") ?? "";
-  const allow = ORIGINS.includes(origin) ? origin : ORIGINS[0] ?? "null";
+  // 허용 출처 목록(기본: GitHub Pages)에 있는 출처만 허용. 목록이 비면 요청 출처를 그대로 허용
+  // ALLOWED_ORIGIN 미설정이면 요청 출처를 그대로 허용(기본: GitHub Pages 주소), 설정돼 있으면 목록만 허용
+  const allow = ORIGINS.length === 0 ? (origin || "*") : ORIGINS.includes(origin) ? origin : ORIGINS[0];
   return {
     "Access-Control-Allow-Origin": allow,
     "Vary": "Origin",
