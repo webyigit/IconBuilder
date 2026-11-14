@@ -118,6 +118,9 @@ async function sb(cfg) {
       if (error) throw error;
     }
   } catch (e) {
+    if (/anonymous/i.test(e?.message || '') || e?.code === 'anonymous_provider_disabled') {
+      throw new Error('Supabase의 익명 로그인(Anonymous sign-ins)이 꺼져 있어요. 관리자가 Authentication → Sign In / Providers에서 켜야 해요.');
+    }
     throw new Error('Supabase에 연결하지 못했어요. 설정의 주소·키와 네트워크를 확인해 주세요.');
   }
   sbClient = client;
