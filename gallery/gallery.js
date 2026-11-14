@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const $ = (s) => document.querySelector(s);
-  const CATS = [['all', '전체'], ['ui', 'UI'], ['material', 'Material'], ['color', '컬러'], ['logo', '브랜드'], ['theme', '테마'], ['emoji', '이모지']];
+  const CATS = [['all', '전체'], ['ui', 'UI'], ['material', 'Material'], ['color', '컬러'], ['emoji', '이모지'], ['brand', '브랜드별'], ['logo', '로고 세트'], ['theme', '테마']];
   const state = { index: [], cat: 'all', filter: '', style: null, data: null, q: '', color: null, size: 32, cache: new Map(), current: null };
 
   // ---------- SVG 만들기 ----------
@@ -96,7 +96,7 @@
       li.setAttribute('aria-selected', String(state.style && state.style.id === m.id));
       const txt = document.createElement('div');
       const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = m.name;
-      const sub = document.createElement('div'); sub.className = 'sub'; sub.textContent = `${m.license} · ${popText(m.pop)}`;
+      const sub = document.createElement('div'); sub.className = 'sub'; sub.textContent = m.cat === 'brand' ? `로고 ${m.count}종 · ${m.official ? '공식 자료 링크' : '공식 자료 [확인 필요]'}` : `${m.license} · ${popText(m.pop)}`;
       txt.append(nm, sub);
       const smp = document.createElement('div'); smp.className = 'smp';
       for (const [, vb, body] of m.sample) {
@@ -133,7 +133,23 @@
     }
   }
 
+  function renderBrandInfo(m) {
+    const box = $('#info'); box.innerHTML = '';
+    const h = document.createElement('h2'); h.textContent = `${m.name} 로고 모음`;
+    const bd = document.createElement('span'); bd.className = 'badge'; bd.textContent = `${m.count}종`; h.appendChild(bd);
+    const p = document.createElement('p');
+    p.append(`오픈소스 세트에서 모은 ${m.name} 로고입니다 (${m.sources.join(', ')}). 아이콘마다 출처·라이선스가 다르니 상세 화면에서 확인하세요.`);
+    const p2 = document.createElement('p'); p2.className = 'pop';
+    p2.append('공식 브랜드 자료: ');
+    if (m.official) { const a = document.createElement('a'); a.href = m.official; a.target = '_blank'; a.rel = 'noopener'; a.textContent = m.officialNote || m.official; p2.append(a); }
+    else p2.append('[확인 필요]');
+    p2.append(' · 로고는 각 회사의 상표입니다. 공식 원본은 재배포가 제한될 수 있어 링크만 둡니다.');
+    box.append(h, p, p2);
+    $('#color').disabled = false;
+  }
+
   function renderInfo(m) {
+    if (m.cat === 'brand') return renderBrandInfo(m);
     const box = $('#info'); box.innerHTML = '';
     const h = document.createElement('h2'); h.textContent = m.name;
     const bd = document.createElement('span'); bd.className = 'badge'; bd.textContent = m.color ? '컬러' : '단색'; h.appendChild(bd);
@@ -154,7 +170,7 @@
   function renderGrid() {
     const grid = $('#grid'); grid.innerHTML = '';
     const q = state.q.trim().toLowerCase();
-    const icons = state.data.icons.filter(([n]) => !q || n.includes(q));
+    const icons = state.data.icons.filter(([n, , , src]) => !q || n.includes(q) || (src && src.toLowerCase().includes(q)));
     const color = state.style.color ? null : iconColor();
     const frag = document.createDocumentFragment();
     for (const ic of icons) {
@@ -162,7 +178,7 @@
       const li = document.createElement('li');
       const b = document.createElement('button'); b.type = 'button'; b.title = name + ' — 클릭해서 복사·다운로드';
       const im = document.createElement('img'); im.alt = ''; im.src = dataUri(svgString(vb, body, { color }));
-      const sp = document.createElement('span'); sp.textContent = name;
+      const sp = document.createElement('span'); sp.textContent = ic[3] ? ic[3].split(' · ')[0] : name;
       b.append(im, sp); b.onclick = () => openIcon(ic); li.appendChild(b); frag.appendChild(li);
     }
     grid.appendChild(frag);
@@ -179,7 +195,7 @@
     state.current = ic;
     const svg = currentSvg();
     $('#dlgTitle').textContent = ic[0];
-    $('#dlgMeta').textContent = `${state.style.name} · ${state.style.license}`;
+    $('#dlgMeta').textContent = ic[3] ? `${state.style.name} · ${ic[3]}` : `${state.style.name} · ${state.style.license}`;
     $('#pv').innerHTML = ''; const im = document.createElement('img'); im.alt = ic[0]; im.src = dataUri(svg); $('#pv').appendChild(im);
     $('#code').value = svg;
     const d = $('#dlg'); if (d.showModal) d.showModal(); else d.setAttribute('open', '');
@@ -202,7 +218,10 @@
   }
 
   // ---------- ZIP ----------
-  function licenseText(m) {
+  function licenseText(m, icons) {
+    if (m.cat === 'brand') return [`${m.name} 로고 모음 (아이콘 갤러리)`, `공식 브랜드 자료: ${m.official || '[확인 필요]'}`, '', '파일별 출처·라이선스:',
+      ...(icons || []).map((i) => `${i[0]}.svg — ${i[3]}`), '', '※ 로고는 각 회사의 상표입니다. 파일 라이선스와 별개로 상표 사용 규정을 따르세요.',
+      '※ CC BY 파일(Font Awesome 등)은 사용 시 제작자·라이선스 표기 필요.'].join('\n');
     return [`${m.name}`, `세트: ${m.set} (v${m.version})`, `제작: ${m.author || '-'}`, `홈페이지: ${m.url || '-'}`,
       `라이선스: ${m.license} (${m.spdx})`, `라이선스 전문: ${m.licenseUrl || '-'}`,
       `신뢰 지표(2026-11-14 조회): ${popText(m.pop)}${m.pop.repo ? ' — github.com/' + m.pop.repo : ''}${m.pop.npm ? ' — npm ' + m.pop.npm : ''}`, '',
@@ -218,7 +237,7 @@
       const color = m.color ? null : (state.color || 'currentColor');
       const zip = new JSZip(); const dir = zip.folder(m.id);
       for (const [name, vb, body] of d.icons) dir.file(`${name}.svg`, svgString(vb, body, { color: color === 'currentColor' ? null : color }));
-      dir.file('LICENSE.txt', licenseText(m));
+      dir.file('LICENSE.txt', licenseText(m, d.icons));
       download(await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' }), `${m.id}-svg.zip`);
       toast(`${d.icons.length}개 SVG를 ZIP으로 받았습니다`);
     } catch (e) { toast('ZIP 생성 실패'); }
@@ -234,7 +253,7 @@
         btn.textContent = `만드는 중 ${++i}/${state.index.length}`;
         const d = await loadStyle(m.id); const dir = zip.folder(m.id);
         for (const [name, vb, body] of d.icons) { dir.file(`${name}.svg`, svgString(vb, body)); n++; }
-        dir.file('LICENSE.txt', licenseText(m));
+        dir.file('LICENSE.txt', licenseText(m, d.icons));
       }
       btn.textContent = '압축 중…';
       download(await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' }), 'icon-gallery-all-svg.zip');
@@ -248,7 +267,8 @@
     try { state.index = await loadJSON('data/index.json'); }
     catch { $('#grid').innerHTML = '<li class="empty">목록을 불러오지 못했습니다</li>'; return; }
     const total = state.index.reduce((s, m) => s + m.count, 0);
-    $('#stat').textContent = `${state.index.length}개 스타일 · 아이콘 ${total.toLocaleString()}개 · 상업 이용 가능 라이선스`;
+    const nb = state.index.filter((m) => m.cat === 'brand').length;
+    $('#stat').textContent = `${state.index.length - nb}개 스타일 + 브랜드 ${nb}곳 · 아이콘 ${total.toLocaleString()}개 · 상업 이용 가능 라이선스`;
     $('#color').value = /^#[0-9a-f]{6}$/i.test(inkColor()) ? inkColor() : '#1a1d29';
     renderCats(); renderStyles();
     const want = decodeURIComponent(location.hash.slice(1));

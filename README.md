@@ -10,7 +10,7 @@
 | `supabase/schema.sql` | 테이블·RLS·스토리지 버킷 |
 | `supabase/functions/generate-icon/` | Claude API로 SVG 생성하는 Edge Function |
 | `docs/` | 요구사항·화면설계·테스트 결함 리포트 |
-| `gallery/` | 오픈소스 아이콘 갤러리(100개 스타일, 약 1만 개 SVG). 출처·라이선스·선정 지표는 `gallery/LICENSES.md`, 데이터 재생성은 `gallery/tools/build.py` |
+| `gallery/` | 오픈소스 아이콘 갤러리(아이콘·이모지 107개 스타일 + 브랜드 53곳 로고 모음). 출처·라이선스·선정 지표는 `gallery/LICENSES.md`, 데이터 재생성은 `gallery/tools/build.py` |
 
 ## 로컬 실행
 ```bash

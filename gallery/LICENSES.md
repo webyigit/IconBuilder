@@ -14,7 +14,8 @@ SVG 데이터는 [Iconify](https://iconify.design)가 각 세트를 정리해 np
 GitHub 스타 1,000개 이상 **또는** npm 주간 다운로드 10,000회 이상인 세트만 넣었습니다. 2026-11-14 조회 (GitHub: github.com·api.github.com, npm: api.npmjs.org `downloads/point/last-week`).
 세트마다 대표 npm 패키지 하나의 수치이며, npm 집계 주간은 패키지별로 조금씩 다를 수 있습니다.
 
-제외한 세트: Streamline 무료 세트(GitHub ★108, npm 주간 107), Teenyicons(npm 주간 210), Majesticons(★190, 주간 582), Akar Icons(★422, 주간 402), Pepicons(★60, 주간 396), Mage Icons(★90, 주간 9,831), Feather Icon fe(★196, 주간 5,430).
+제외한 세트: Streamline 무료 세트(GitHub ★108, npm 주간 107), Teenyicons(npm 주간 210), Majesticons(★190, 주간 582), Akar Icons(★422, 주간 402), Pepicons(★60, 주간 396), Mage Icons(★90, 주간 9,831), Feather Icon fe(★196, 주간 5,430), Firefox OS Emoji(★334, 주간 2,939).
+OpenMoji(★4.6k)는 CC BY-SA 4.0(변경 시 같은 조건으로 공유해야 함)이라 상업 이용 조건이 까다로워 제외했습니다.
 
 ## 스타일별 목록
 
@@ -101,25 +102,94 @@ GitHub 스타 1,000개 이상 **또는** npm 주간 다운로드 10,000회 이�
 | 79 | Simple Icons (브랜드) | [Simple Icons](https://github.com/simple-icons/simple-icons) | [CC0 1.0](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md) | Simple Icons Collaborators | [25.8k](https://github.com/simple-icons/simple-icons) | [2,560,104](https://www.npmjs.com/package/simple-icons) `simple-icons` |
 | 80 | SVG Logos (컬러 브랜드) | [SVG Logos](https://github.com/gilbarbara/logos) | [CC0](https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt) | Gil Barbara | [6.8k](https://github.com/gilbarbara/logos) | [448,255](https://www.npmjs.com/package/@iconify-json/logos) `@iconify-json/logos` |
 | 81 | Devicon (개발 도구 컬러) | [Devicon](https://github.com/devicons/devicon/tree/master) | [MIT](https://github.com/devicons/devicon/blob/master/LICENSE) | konpa | [11.8k](https://github.com/devicons/devicon) | [93,370](https://www.npmjs.com/package/devicon) `devicon` |
-| 82 | Twemoji (이모지) | [Twitter Emoji](https://github.com/jdecked/twemoji) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Twitter | [17.8k](https://github.com/twitter/twemoji) | [51,613](https://www.npmjs.com/package/@twemoji/api) `@twemoji/api` |
-| 83 | Material Symbols Light Filled | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
-| 84 | Material Symbols Light Outlined | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
-| 85 | Material Symbols Light Rounded Filled | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
-| 86 | Material Symbols Light Rounded | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
-| 87 | Material Symbols Light Sharp Filled | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
-| 88 | Material Symbols Light Sharp | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
-| 89 | Lets Icons Fill | [Lets Icons](https://www.figma.com/community/file/886554014393250663) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Leonid Tsvetkov | - | [14,736](https://www.npmjs.com/package/@iconify-json/lets-icons) `@iconify-json/lets-icons` |
-| 90 | Lets Icons Line | [Lets Icons](https://www.figma.com/community/file/886554014393250663) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Leonid Tsvetkov | - | [14,736](https://www.npmjs.com/package/@iconify-json/lets-icons) `@iconify-json/lets-icons` |
-| 91 | Octicons 16px | [Octicons](https://github.com/primer/octicons/) | [MIT](https://github.com/primer/octicons/blob/main/LICENSE) | GitHub | [8.8k](https://github.com/primer/octicons) | [327,924](https://www.npmjs.com/package/@primer/octicons) `@primer/octicons` |
-| 92 | TDesign Filled | [TDesign Icons](https://github.com/Tencent/tdesign-icons) | [MIT](https://github.com/Tencent/tdesign-icons/blob/main/LICENSE) | TDesign | [99](https://github.com/Tencent/tdesign-icons) | [10,024](https://www.npmjs.com/package/tdesign-icons-react) `tdesign-icons-react` |
-| 93 | Health Icons Outline | [Health Icons](https://github.com/resolvetosavelives/healthicons) | [MIT](https://github.com/resolvetosavelives/healthicons/blob/main/LICENSE) | Resolve to Save Lives | [866](https://github.com/resolvetosavelives/healthicons) | [19,097](https://www.npmjs.com/package/healthicons-react) `healthicons-react` |
-| 94 | Fluent UI Regular (20px) | [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons) | [MIT](https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE) | Microsoft Corporation | [10.9k](https://github.com/microsoft/fluentui-system-icons) | [388,167](https://www.npmjs.com/package/@fluentui/react-icons) `@fluentui/react-icons` |
-| 95 | Fluent UI Light (32px) | [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons) | [MIT](https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE) | Microsoft Corporation | [10.9k](https://github.com/microsoft/fluentui-system-icons) | [388,167](https://www.npmjs.com/package/@fluentui/react-icons) `@fluentui/react-icons` |
-| 96 | Tabler Brands | [Tabler Icons](https://github.com/tabler/tabler-icons) | [MIT](https://github.com/tabler/tabler-icons/blob/master/LICENSE) | Paweł Kuna | [21.6k](https://github.com/tabler/tabler-icons) | [5,234,500](https://www.npmjs.com/package/@tabler/icons-react) `@tabler/icons-react` |
-| 97 | Fluent UI Filled (20px) | [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons) | [MIT](https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE) | Microsoft Corporation | [10.9k](https://github.com/microsoft/fluentui-system-icons) | [388,167](https://www.npmjs.com/package/@fluentui/react-icons) `@fluentui/react-icons` |
-| 98 | Ionicons Logos | [IonIcons](https://github.com/ionic-team/ionicons) | [MIT](https://github.com/ionic-team/ionicons/blob/main/LICENSE) | Ben Sperry | [18.2k](https://github.com/ionic-team/ionicons) | [890,781](https://www.npmjs.com/package/ionicons) `ionicons` |
-| 99 | SVG Logos 워드마크 (컬러) | [SVG Logos](https://github.com/gilbarbara/logos) | [CC0](https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt) | Gil Barbara | [6.8k](https://github.com/gilbarbara/logos) | [448,255](https://www.npmjs.com/package/@iconify-json/logos) `@iconify-json/logos` |
-| 100 | Devicon Plain (단색) | [Devicon Plain](https://github.com/devicons/devicon/tree/master) | [MIT](https://github.com/devicons/devicon/blob/master/LICENSE) | konpa | [11.8k](https://github.com/devicons/devicon) | [93,370](https://www.npmjs.com/package/devicon) `devicon` |
+| 82 | Twemoji (X·트위터) | [Twitter Emoji](https://github.com/jdecked/twemoji) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Twitter | [17.8k](https://github.com/twitter/twemoji) | [51,613](https://www.npmjs.com/package/@twemoji/api) `@twemoji/api` |
+| 83 | Noto Emoji (구글) | [Noto Emoji](https://github.com/googlefonts/noto-emoji) | [Apache 2.0](https://github.com/googlefonts/noto-emoji/blob/main/svg/LICENSE) | Google Inc | [5.1k](https://github.com/googlefonts/noto-emoji) | [19,979](https://www.npmjs.com/package/@iconify-json/noto) `@iconify-json/noto` |
+| 84 | Noto Emoji v1 (구글 구버전) | [Noto Emoji (v1)](https://github.com/googlefonts/noto-emoji) | [Apache 2.0](https://github.com/googlefonts/noto-emoji/blob/main/svg/LICENSE) | Google Inc | [5.1k](https://github.com/googlefonts/noto-emoji) | [19,979](https://www.npmjs.com/package/@iconify-json/noto) `@iconify-json/noto` |
+| 85 | Fluent Emoji 3D (마이크로소프트) | [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) | [MIT](https://github.com/microsoft/fluentui-emoji/blob/main/LICENSE) | Microsoft Corporation | [10.2k](https://github.com/microsoft/fluentui-emoji) | [34,767](https://www.npmjs.com/package/@iconify-json/fluent-emoji-flat) `@iconify-json/fluent-emoji-flat` |
+| 86 | Fluent Emoji Flat (마이크로소프트) | [Fluent Emoji Flat](https://github.com/microsoft/fluentui-emoji) | [MIT](https://github.com/microsoft/fluentui-emoji/blob/main/LICENSE) | Microsoft Corporation | [10.2k](https://github.com/microsoft/fluentui-emoji) | [34,767](https://www.npmjs.com/package/@iconify-json/fluent-emoji-flat) `@iconify-json/fluent-emoji-flat` |
+| 87 | Fluent Emoji 단색 (마이크로소프트) | [Fluent Emoji High Contrast](https://github.com/microsoft/fluentui-emoji) | [MIT](https://github.com/microsoft/fluentui-emoji/blob/main/LICENSE) | Microsoft Corporation | [10.2k](https://github.com/microsoft/fluentui-emoji) | [34,767](https://www.npmjs.com/package/@iconify-json/fluent-emoji-flat) `@iconify-json/fluent-emoji-flat` |
+| 88 | EmojiOne 2 (컬러) | [Emoji One (Colored)](https://github.com/EmojiTwo/emojitwo) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Emoji One | [4.4k](https://github.com/joypixels/emojione) | [11,078](https://www.npmjs.com/package/@iconify-json/emojione) `@iconify-json/emojione` |
+| 89 | EmojiOne 2 단색 | [Emoji One (Monotone)](https://github.com/EmojiTwo/emojitwo) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Emoji One | [4.4k](https://github.com/joypixels/emojione) | [11,078](https://www.npmjs.com/package/@iconify-json/emojione) `@iconify-json/emojione` |
+| 90 | Material Symbols Light Filled | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
+| 91 | Material Symbols Light Outlined | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
+| 92 | Material Symbols Light Rounded Filled | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
+| 93 | Material Symbols Light Rounded | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
+| 94 | Material Symbols Light Sharp Filled | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
+| 95 | Material Symbols Light Sharp | [Material Symbols Light](https://github.com/google/material-design-icons) | [Apache 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) | Google | [53.9k](https://github.com/google/material-design-icons) | [312,227](https://www.npmjs.com/package/material-symbols) `material-symbols` |
+| 96 | Lets Icons Fill | [Lets Icons](https://www.figma.com/community/file/886554014393250663) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Leonid Tsvetkov | - | [14,736](https://www.npmjs.com/package/@iconify-json/lets-icons) `@iconify-json/lets-icons` |
+| 97 | Lets Icons Line | [Lets Icons](https://www.figma.com/community/file/886554014393250663) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Leonid Tsvetkov | - | [14,736](https://www.npmjs.com/package/@iconify-json/lets-icons) `@iconify-json/lets-icons` |
+| 98 | Octicons 16px | [Octicons](https://github.com/primer/octicons/) | [MIT](https://github.com/primer/octicons/blob/main/LICENSE) | GitHub | [8.8k](https://github.com/primer/octicons) | [327,924](https://www.npmjs.com/package/@primer/octicons) `@primer/octicons` |
+| 99 | TDesign Filled | [TDesign Icons](https://github.com/Tencent/tdesign-icons) | [MIT](https://github.com/Tencent/tdesign-icons/blob/main/LICENSE) | TDesign | [99](https://github.com/Tencent/tdesign-icons) | [10,024](https://www.npmjs.com/package/tdesign-icons-react) `tdesign-icons-react` |
+| 100 | Health Icons Outline | [Health Icons](https://github.com/resolvetosavelives/healthicons) | [MIT](https://github.com/resolvetosavelives/healthicons/blob/main/LICENSE) | Resolve to Save Lives | [866](https://github.com/resolvetosavelives/healthicons) | [19,097](https://www.npmjs.com/package/healthicons-react) `healthicons-react` |
+| 101 | Fluent UI Regular (20px) | [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons) | [MIT](https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE) | Microsoft Corporation | [10.9k](https://github.com/microsoft/fluentui-system-icons) | [388,167](https://www.npmjs.com/package/@fluentui/react-icons) `@fluentui/react-icons` |
+| 102 | Fluent UI Light (32px) | [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons) | [MIT](https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE) | Microsoft Corporation | [10.9k](https://github.com/microsoft/fluentui-system-icons) | [388,167](https://www.npmjs.com/package/@fluentui/react-icons) `@fluentui/react-icons` |
+| 103 | Tabler Brands | [Tabler Icons](https://github.com/tabler/tabler-icons) | [MIT](https://github.com/tabler/tabler-icons/blob/master/LICENSE) | Paweł Kuna | [21.6k](https://github.com/tabler/tabler-icons) | [5,234,500](https://www.npmjs.com/package/@tabler/icons-react) `@tabler/icons-react` |
+| 104 | Fluent UI Filled (20px) | [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons) | [MIT](https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE) | Microsoft Corporation | [10.9k](https://github.com/microsoft/fluentui-system-icons) | [388,167](https://www.npmjs.com/package/@fluentui/react-icons) `@fluentui/react-icons` |
+| 105 | Ionicons Logos | [IonIcons](https://github.com/ionic-team/ionicons) | [MIT](https://github.com/ionic-team/ionicons/blob/main/LICENSE) | Ben Sperry | [18.2k](https://github.com/ionic-team/ionicons) | [890,781](https://www.npmjs.com/package/ionicons) `ionicons` |
+| 106 | SVG Logos 워드마크 (컬러) | [SVG Logos](https://github.com/gilbarbara/logos) | [CC0](https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt) | Gil Barbara | [6.8k](https://github.com/gilbarbara/logos) | [448,255](https://www.npmjs.com/package/@iconify-json/logos) `@iconify-json/logos` |
+| 107 | Devicon Plain (단색) | [Devicon Plain](https://github.com/devicons/devicon/tree/master) | [MIT](https://github.com/devicons/devicon/blob/master/LICENSE) | konpa | [11.8k](https://github.com/devicons/devicon) | [93,370](https://www.npmjs.com/package/devicon) `devicon` |
+
+## 브랜드별 로고 모음
+
+브랜드마다 위 오픈소스 세트에서 같은 브랜드 로고를 최대 10종 모았습니다 (컬러 심볼·컬러 로고·단색·라인·필 등). 각 아이콘의 출처 세트와 라이선스는 갤러리 상세 화면과 ZIP의 `LICENSE.txt`에 있습니다.
+**상표 주의**: 파일 라이선스(MIT·CC0 등)는 그림 파일에 대한 것이고, 로고 자체는 각 회사의 등록 상표입니다. 서비스 연동 표시·링크 용도 외 사용은 아래 공식 가이드를 따르세요.
+공식 페이지의 로고 원본은 재배포가 허용되지 않는 경우가 많아 갤러리에 넣지 않고 **링크만** 표기했습니다. 링크는 2026-11-14 접속 확인한 것만 넣었고, 확인하지 못한 곳은 [확인 필요]입니다.
+
+| 브랜드 | 수집 수 | 출처 세트 | 공식 브랜드 자료 |
+|---|---|---|---|
+| Google | 10 | devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [로고·브랜드 요소 가이드](https://about.google/brand-resource-center/) |
+| Apple | 10 | bi, devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [상표 사용 규정 (로고 배포 없음)](https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html) |
+| Microsoft | 9 | bi, cib, fa7-brands, ion, logos, mdi, ri | [상표·브랜드 가이드 (로고는 별도 허가)](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks) |
+| Meta | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [약관 동의 후 로고 팩 다운로드](https://www.meta.com/brand/resources/facebook/logo/) |
+| Facebook | 10 | bi, devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [약관 동의 후 로고 팩 다운로드](https://www.meta.com/brand/resources/facebook/logo/) |
+| Instagram | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [약관 동의 후 에셋 팩 다운로드](https://www.meta.com/brand/resources/instagram/instagram-brand/) |
+| Threads | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| WhatsApp | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| Messenger | 10 | bi, cib, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| X (Twitter) | 10 | bi, ion, logos, ph, simple-icons, tabler, thesvg | [확인 필요] |
+| YouTube | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [브랜드 리소스](https://brand.youtube/) |
+| TikTok | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| Snapchat | 10 | bi, fa7-brands, ion, ph, ri, simple-icons, tabler | [확인 필요] |
+| LinkedIn | 10 | bi, devicon, fa7-brands, logos, ph, ri, tabler | [승인된 에셋만 사용](https://brand.linkedin.com/) |
+| Pinterest | 10 | bi, fa7-brands, ion, logos, ph, ri, simple-icons, tabler | [로고 에셋 패키지](https://business.pinterest.com/brand-guidelines/) |
+| Reddit | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| Telegram | 10 | bi, cib, fa7-brands, logos, ph, ri, simple-icons, tabler | [로고 zip 다운로드](https://telegram.org/tour/screenshots) |
+| Discord | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [로고 SVG·zip 다운로드](https://discord.com/branding) |
+| Slack | 10 | bi, devicon, fa7-brands, logos, ph, ri, tabler | [로고 파일·스크린샷](https://slack.com/media-kit) |
+| LINE | 8 | bi, cib, fa7-brands, ri, simple-icons, tabler, thesvg | [확인 필요] |
+| WeChat | 10 | bi, cib, ion, mdi, ph, ri, simple-icons, tabler | [확인 필요] |
+| KakaoTalk | 2 | simple-icons, thesvg | [서비스 소개 (미디어 킷은 사이트 내 링크)](https://www.kakaocorp.com/page/service/service/KakaoTalk) |
+| NAVER | 2 | simple-icons, thesvg | [확인 필요] |
+| GitHub | 10 | devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [브랜드 툴킷·로고 가이드](https://brand.github.com/) |
+| GitLab | 10 | devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [로고 PNG·SVG·EPS 다운로드](https://about.gitlab.com/press/press-kit/) |
+| Figma | 10 | devicon, fa7-brands, ion, logos, ph, ri, simple-icons, tabler | [로고 다운로드](https://www.figma.com/using-the-figma-brand/) |
+| Notion | 10 | devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| Dropbox | 10 | bi, fa7-brands, ion, logos, ph, ri, simple-icons, tabler | [브랜드 파트너 툴킷](https://brand.dropbox.com/) |
+| Trello | 10 | bi, cib, devicon, fa7-brands, logos, mdi, ri, simple-icons, tabler | [Atlassian 로고 zip](https://atlassian.design/foundations/logos) |
+| Jira | 10 | cib, devicon, devicon-plain, fa7-brands, logos, mdi, simple-icons, tabler, thesvg | [Atlassian 로고 zip](https://atlassian.design/foundations/logos) |
+| Spotify | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [로고·아이콘 zip 다운로드](https://developer.spotify.com/documentation/design) |
+| Netflix | 9 | cib, logos, mdi, ri, simple-icons, tabler, thesvg | [확인 필요] |
+| Twitch | 10 | bi, fa7-brands, ion, logos, ph, ri, simple-icons, tabler | [Twitch-Brand.zip 다운로드](https://brand.twitch.com/) |
+| Amazon | 10 | bi, cib, fa7-brands, ion, ph, ri, tabler | [확인 필요] |
+| Android | 10 | devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [안드로이드 로봇 PNG·SVG (CC BY 3.0 표기)](https://developer.android.com/distribute/marketing-tools/brand-guidelines) |
+| Windows | 10 | bi, cib, fa7-brands, ion, ph, ri, tabler | [Microsoft 상표 가이드 적용](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks) |
+| Chrome | 9 | devicon, devicon-plain, fa7-brands, ion, logos, ri, tabler | [Google 브랜드 가이드 적용](https://about.google/brand-resource-center/) |
+| Firefox | 10 | devicon, devicon-plain, fa7-brands, ion, logos, mdi, ri, simple-icons, tabler | [로고 팩 다운로드](https://mozilla.design/firefox/logos-usage/) |
+| PayPal | 10 | bi, fa7-brands, ion, logos, ph, ri, simple-icons, tabler | [로고 zip 다운로드](https://newsroom.paypal-corp.com/media-resources) |
+| Stripe | 10 | bi, cib, fa7-brands, logos, ph, simple-icons, tabler | [로고 키트 zip](https://stripe.com/newsroom/brand-assets) |
+| WordPress | 10 | bi, devicon, fa7-brands, ion, logos, ri, simple-icons, tabler | [상표 정책 (로고 배포 없음)](https://wordpressfoundation.org/trademark-policy/) |
+| Docker | 10 | cib, devicon, devicon-plain, fa7-brands, ion, logos, mdi, simple-icons, tabler | [로고 키트 zip](https://www.docker.com/company/newsroom/media-resources/) |
+| Kubernetes | 9 | cib, devicon, devicon-plain, fa7-brands, logos, mdi, simple-icons, thesvg | [CNCF 공식 로고 PNG·SVG](https://github.com/cncf/artwork) |
+| Python | 10 | cib, devicon, devicon-plain, fa7-brands, ion, logos, simple-icons, tabler, thesvg | [로고 PNG·SVG (PSF 상표)](https://www.python.org/community/logos/) |
+| Node.js | 10 | devicon, devicon-plain, ion, logos, mdi, ri, tabler | [로고 SVG](https://nodejs.org/en/about/branding) |
+| React | 10 | cib, devicon, fa7-brands, ion, logos, mdi, simple-icons, tabler, thesvg | [확인 필요] |
+| OpenAI | 7 | bi, fa7-brands, logos, ri, tabler | [디자인 가이드 (로고 사용은 문의)](https://openai.com/brand/) |
+| npm | 10 | cib, devicon, devicon-plain, fa7-brands, ion, logos, mdi, simple-icons, tabler | [확인 필요] |
+| Vercel | 10 | devicon, ion, logos, ri, simple-icons, tabler | [확인 필요] |
+| Medium | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| Behance | 10 | bi, devicon, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| Dribbble | 10 | bi, fa7-brands, logos, ph, ri, simple-icons, tabler | [확인 필요] |
+| Zoom | 7 | cib, fa7-brands, logos, simple-icons, tabler, thesvg | [확인 필요] |
 
 ---
 

@@ -10,8 +10,8 @@ PER_STYLE = 100
 
 # (id, 표시 이름, prefix, 포함 정규식, 기준이름 추출용 제거 정규식, 분류)
 S = []
-def add(id, name, prefix, inc, strip=None, exc=None, cat='ui'):
-    S.append(dict(id=id, name=name, prefix=prefix, inc=inc, strip=strip, exc=exc, cat=cat))
+def add(id, name, prefix, inc, strip=None, exc=None, cat='ui', n=PER_STYLE):
+    S.append(dict(id=id, name=name, prefix=prefix, inc=inc, strip=strip, exc=exc, cat=cat, n=n))
 
 NOT_MS = r'-(outline|rounded|sharp)$'
 add('material-symbols-filled', 'Material Symbols Filled', 'material-symbols', r'^.*$', None, r'-(outline|rounded|sharp)$', 'material')
@@ -85,7 +85,15 @@ add('game-icons', 'Game Icons', 'game-icons', r'.*', None, None, 'theme')
 add('simple-icons', 'Simple Icons (브랜드)', 'simple-icons', r'.*', None, None, 'logo')
 add('svg-logos', 'SVG Logos (컬러 브랜드)', 'logos', r'-icon$', r'-icon$', None, 'logo')
 add('devicon', 'Devicon (개발 도구 컬러)', 'devicon', r'.*', None, r'-wordmark$', 'logo')
-add('twemoji', 'Twemoji (이모지)', 'twemoji', r'.*', None, r'tone|^flag-', 'emoji')
+EMO_EXC = r'tone|^flag-|^regional-indicator|^keycap'
+add('twemoji', 'Twemoji (X·트위터)', 'twemoji', r'.*', None, EMO_EXC, 'emoji', 200)
+add('noto-emoji', 'Noto Emoji (구글)', 'noto', r'.*', None, EMO_EXC, 'emoji', 200)
+add('noto-emoji-v1', 'Noto Emoji v1 (구글 구버전)', 'noto-v1', r'.*', None, EMO_EXC, 'emoji', 200)
+add('fluent-emoji-3d', 'Fluent Emoji 3D (마이크로소프트)', 'fluent-emoji', r'.*', None, EMO_EXC, 'emoji', 100)
+add('fluent-emoji-flat', 'Fluent Emoji Flat (마이크로소프트)', 'fluent-emoji-flat', r'.*', None, EMO_EXC, 'emoji', 200)
+add('fluent-emoji-mono', 'Fluent Emoji 단색 (마이크로소프트)', 'fluent-emoji-high-contrast', r'.*', None, EMO_EXC, 'emoji', 200)
+add('emojione', 'EmojiOne 2 (컬러)', 'emojione', r'.*', None, EMO_EXC, 'emoji', 200)
+add('emojione-mono', 'EmojiOne 2 단색', 'emojione-monotone', r'.*', None, EMO_EXC, 'emoji', 200)
 
 for v, n, inc, strip in [('filled', 'Filled', r'.*', None), ('outlined', 'Outlined', r'^(?!.*-outline-(rounded|sharp)$).*-outline$', r'-outline$'),
                          ('rounded', 'Rounded Filled', r'^(?!.*-outline-rounded$).*-rounded$', r'-rounded$'), ('outline-rounded', 'Rounded', r'-outline-rounded$', r'-outline-rounded$'),
@@ -154,6 +162,13 @@ POP = {
  'devicon': ('devicons/devicon', '11.8k', 'devicon', 93370),
  'devicon-plain': ('devicons/devicon', '11.8k', 'devicon', 93370),
  'twemoji': ('twitter/twemoji', '17.8k', '@twemoji/api', 51613),
+ 'noto': ('googlefonts/noto-emoji', '5.1k', '@iconify-json/noto', 19979),
+ 'noto-v1': ('googlefonts/noto-emoji', '5.1k', '@iconify-json/noto', 19979),
+ 'fluent-emoji': ('microsoft/fluentui-emoji', '10.2k', '@iconify-json/fluent-emoji-flat', 34767),
+ 'fluent-emoji-flat': ('microsoft/fluentui-emoji', '10.2k', '@iconify-json/fluent-emoji-flat', 34767),
+ 'fluent-emoji-high-contrast': ('microsoft/fluentui-emoji', '10.2k', '@iconify-json/fluent-emoji-flat', 34767),
+ 'emojione': ('joypixels/emojione', '4.4k', '@iconify-json/emojione', 11078),
+ 'emojione-monotone': ('joypixels/emojione', '4.4k', '@iconify-json/emojione', 11078),
 }
 
 KEY = """home house|search magnifying-glass magnifier zoom|user person account profile|users people group|settings setting gear cog|menu hamburger bars|close x xmark cancel|check checkmark tick done|plus add|minus remove subtract|edit pencil pen|trash delete bin|heart favorite like|star|bell notification alarm|mail email envelope|phone call|chat message comment|send paper-plane|calendar|clock time|camera|image photo picture|video film|music|play|pause|stop|download|upload|share|link|lock|unlock|key|eye view visible|eye-off eye-slash hidden|info information|alert warning|help question|cart shopping-cart|bag shopping-bag|credit-card card|wallet|gift|tag|bookmark|flag|map|location map-pin pin marker|globe world earth|cloud|sun|moon|wifi|bluetooth|battery|power|refresh reload|filter|sort|grid|list|copy|clipboard|file document|folder|save floppy|print printer|attachment paperclip|arrow-left|arrow-right|arrow-up|arrow-down|chevron-left|chevron-right|chevron-up|chevron-down|external-link open-in-new|log-in login sign-in|log-out logout sign-out|dashboard|chart chart-bar bar-chart|pie-chart chart-pie|trending-up|database|server|code|terminal|bug|cpu chip|monitor desktop|laptop|smartphone mobile|tablet|keyboard|mouse|headphones|microphone mic|volume speaker|book|briefcase|building office|car|truck|plane airplane|rocket|bike bicycle|coffee|cake|leaf|fire flame|water drop|umbrella|thumbs-up thumb-up like|smile happy|shield|award trophy|lightbulb bulb idea|puzzle|palette|brush|scissors|wrench tool|hammer|target|compass|anchor|crown|diamond|box package|layers|qr-code qrcode|zap flash bolt""".split('|')
@@ -165,8 +180,58 @@ def load(prefix):
         if j['prefix'] == prefix:
             info = json.load(open(os.path.dirname(f) + '/info.json'))
             ver = json.load(open(os.path.dirname(f) + '/package.json'))['version']
+            cf = os.path.dirname(f) + '/chars.json'
+            j['_chars'] = json.load(open(cf)) if os.path.exists(cf) else {}
             return j, info, ver
     raise SystemExit('missing ' + prefix)
+
+# 브랜드 공식 자료 (2026-11-14 접속 확인한 것만; 미확인은 None)
+OFFICIAL = {
+ 'google': ('https://about.google/brand-resource-center/', '로고·브랜드 요소 가이드'),
+ 'chrome': ('https://about.google/brand-resource-center/', 'Google 브랜드 가이드 적용'),
+ 'apple': ('https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html', '상표 사용 규정 (로고 배포 없음)'),
+ 'microsoft': ('https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks', '상표·브랜드 가이드 (로고는 별도 허가)'),
+ 'windows': ('https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks', 'Microsoft 상표 가이드 적용'),
+ 'meta': ('https://www.meta.com/brand/resources/facebook/logo/', '약관 동의 후 로고 팩 다운로드'),
+ 'facebook': ('https://www.meta.com/brand/resources/facebook/logo/', '약관 동의 후 로고 팩 다운로드'),
+ 'instagram': ('https://www.meta.com/brand/resources/instagram/instagram-brand/', '약관 동의 후 에셋 팩 다운로드'),
+ 'youtube': ('https://brand.youtube/', '브랜드 리소스'),
+ 'github': ('https://brand.github.com/', '브랜드 툴킷·로고 가이드'),
+ 'gitlab': ('https://about.gitlab.com/press/press-kit/', '로고 PNG·SVG·EPS 다운로드'),
+ 'linkedin': ('https://brand.linkedin.com/', '승인된 에셋만 사용'),
+ 'telegram': ('https://telegram.org/tour/screenshots', '로고 zip 다운로드'),
+ 'slack': ('https://slack.com/media-kit', '로고 파일·스크린샷'),
+ 'discord': ('https://discord.com/branding', '로고 SVG·zip 다운로드'),
+ 'figma': ('https://www.figma.com/using-the-figma-brand/', '로고 다운로드'),
+ 'spotify': ('https://developer.spotify.com/documentation/design', '로고·아이콘 zip 다운로드'),
+ 'android': ('https://developer.android.com/distribute/marketing-tools/brand-guidelines', '안드로이드 로봇 PNG·SVG (CC BY 3.0 표기)'),
+ 'firefox': ('https://mozilla.design/firefox/logos-usage/', '로고 팩 다운로드'),
+ 'dropbox': ('https://brand.dropbox.com/', '브랜드 파트너 툴킷'),
+ 'pinterest': ('https://business.pinterest.com/brand-guidelines/', '로고 에셋 패키지'),
+ 'twitch': ('https://brand.twitch.com/', 'Twitch-Brand.zip 다운로드'),
+ 'paypal': ('https://newsroom.paypal-corp.com/media-resources', '로고 zip 다운로드'),
+ 'stripe': ('https://stripe.com/newsroom/brand-assets', '로고 키트 zip'),
+ 'wordpress': ('https://wordpressfoundation.org/trademark-policy/', '상표 정책 (로고 배포 없음)'),
+ 'docker': ('https://www.docker.com/company/newsroom/media-resources/', '로고 키트 zip'),
+ 'kubernetes': ('https://github.com/cncf/artwork', 'CNCF 공식 로고 PNG·SVG'),
+ 'python': ('https://www.python.org/community/logos/', '로고 PNG·SVG (PSF 상표)'),
+ 'nodejs': ('https://nodejs.org/en/about/branding', '로고 SVG'),
+ 'openai': ('https://openai.com/brand/', '디자인 가이드 (로고 사용은 문의)'),
+ 'jira': ('https://atlassian.design/foundations/logos', 'Atlassian 로고 zip'),
+ 'trello': ('https://atlassian.design/foundations/logos', 'Atlassian 로고 zip'),
+ 'kakaotalk': ('https://www.kakaocorp.com/page/service/service/KakaoTalk', '서비스 소개 (미디어 킷은 사이트 내 링크)'),
+}
+
+# 이모지 우선순위: 표정 → 하트 → 손 → 사람·활동 → 동물 → 음식 → 자연·날씨 → 사물·기호
+EMO_RANGES = [(0x1F600, 0x1F64F), (0x1F910, 0x1F92F), (0x1F970, 0x1F97F), (0x1F9D0, 0x1F9D0), (0x2764, 0x2764), (0x1F493, 0x1F49F), (0x1F5A4, 0x1F5A4),
+              (0x1F90D, 0x1F90E), (0x1F9E1, 0x1F9E1), (0x1F44A, 0x1F450), (0x1F590, 0x1F596), (0x1F918, 0x1F91F), (0x1F64C, 0x1F64F), (0x270A, 0x270D),
+              (0x1F4AA, 0x1F4AA), (0x1F525, 0x1F525), (0x2B50, 0x2B50), (0x2728, 0x2728), (0x1F4A5, 0x1F4AF), (0x1F389, 0x1F38A), (0x1F381, 0x1F382),
+              (0x1F380, 0x1F393), (0x1F400, 0x1F43F), (0x1F980, 0x1F9AE), (0x1F330, 0x1F37F), (0x1F950, 0x1F96F), (0x1F9C0, 0x1F9CB),
+              (0x2600, 0x26FF), (0x1F300, 0x1F32F), (0x1F680, 0x1F6FF), (0x1F3A0, 0x1F3FF), (0x1F4A0, 0x1F4FF), (0x1F500, 0x1F5FF)]
+def emo_rank(c):
+    for i, (a, b) in enumerate(EMO_RANGES):
+        if a <= c <= b: return i
+    return 99
 
 cache = {}
 os.makedirs(OUT, exist_ok=True)
@@ -190,7 +255,7 @@ for s in S:
             for k in (b, b + '-original', b + '-plain'):
                 if k in cand and cand[k] not in used:
                     picked.append(cand[k]); used.add(cand[k]); break
-    elif s['cat'] == 'emoji':
+    elif s['cat'].startswith('emoji'):
         pass
     else:
         for grp in KEY:
@@ -199,13 +264,20 @@ for s in S:
                 for k in (w, w + '-outline', w + '-1', w + '-2', w + '-alt', w + '-01'):
                     if k in cand and cand[k] not in used: hit = cand[k]; break
                 if hit: picked.append(hit); used.add(hit); break
-            if len(picked) >= PER_STYLE: break
+            if len(picked) >= s['n']: break
     rest = sorted((b for b in cand if cand[b] not in used), key=lambda b: (bool(re.search(r'\d', b)), b.count('-'), b))
-    if s['cat'] == 'emoji':
-        rest.sort(key=lambda b: (0 if b.endswith('-face') or 'smiling' in b else 1, b.count('-'), b))
+    if s['cat'].startswith('emoji'):
+        cp = {}
+        for pf in ('noto', 'twemoji', 'fluent-emoji-flat', s['prefix']):
+            if pf not in cache: cache[pf] = load(pf)
+            for ch, nm in cache[pf][0]['_chars'].items():
+                if '-' not in ch: cp.setdefault(nm, int(ch, 16))
+        rest = [b for b in cand if cand[b] in cp]
+        rest.sort(key=lambda b: (emo_rank(cp[cand[b]]), cp[cand[b]]))
     for b in rest:
-        if len(picked) >= PER_STYLE: break
+        if len(picked) >= s['n']: break
         picked.append(cand[b]); used.add(cand[b])
+    picked = picked[:s['n']]
     icons = []
     for n in picked:
         ic = j['icons'][n]
@@ -214,7 +286,7 @@ for s in S:
         l, t = ic.get('left', 0), ic.get('top', 0)
         body = ic['body']
         icons.append([base, f'{l} {t} {w} {h}', body])
-    color = s['cat'] in ('color', 'emoji') or (s['cat'] == 'logo' and info.get('palette'))
+    color = (s['cat'] in ('color', 'emoji') and s['prefix'] not in ('fluent-emoji-high-contrast', 'emojione-monotone')) or (s['cat'] == 'logo' and info.get('palette'))
     a = info.get('author', {}); lic = info.get('license', {})
     meta = dict(id=s['id'], name=s['name'], set=info['name'], prefix=s['prefix'], cat=s['cat'], color=bool(color),
                 count=len(icons), author=a.get('name'), url=a.get('url'), license=lic.get('title'), spdx=lic.get('spdx'),
@@ -223,12 +295,53 @@ for s in S:
     json.dump(dict(meta=meta, icons=icons), open(f"{OUT}/{s['id']}.json", 'w'), ensure_ascii=False, separators=(',', ':'))
     meta = dict(meta, sample=icons[:3])
     index.append(meta)
+# ---- 브랜드별 모음 ----
+# (prefix, 아이콘 이름 패턴, 표시 라벨) — 우선순위 순서, 브랜드당 최대 BRAND_N개
+BRAND_N = 10
+BRAND_SRC = [('logos', '{b}-icon', 'SVG Logos 컬러 심볼'), ('logos', '{b}', 'SVG Logos 컬러 로고'), ('devicon', '{b}', 'Devicon 컬러'),
+             ('simple-icons', '{b}', 'Simple Icons'), ('fa7-brands', '{b}', 'Font Awesome Brands'), ('tabler', 'brand-{b}', 'Tabler'),
+             ('ri', '{b}-fill', 'Remix Fill'), ('ri', '{b}-line', 'Remix Line'), ('ph', '{b}-logo', 'Phosphor'), ('ph', '{b}-logo-duotone', 'Phosphor Duotone'),
+             ('bi', '{b}', 'Bootstrap Icons'), ('ion', 'logo-{b}', 'Ionicons'), ('tabler', 'brand-{b}-filled', 'Tabler Filled'), ('mdi', '{b}', 'Material Design Icons'),
+             ('cib', '{b}', 'CoreUI Brands'), ('devicon-plain', '{b}', 'Devicon 단색'), ('devicon', '{b}-wordmark', 'Devicon 워드마크'), ('ph', '{b}-logo-fill', 'Phosphor Fill'),
+             ('thesvg', '{b}', 'theSVG')]
+for b in BRAND_SRC:
+    if b[0] not in cache: cache[b[0]] = load(b[0])
+BRAND_LIST = [('google', 'Google'), ('apple', 'Apple'), ('microsoft', 'Microsoft'), ('meta', 'Meta'), ('facebook', 'Facebook'), ('instagram', 'Instagram'),
+              ('threads', 'Threads'), ('whatsapp', 'WhatsApp'), ('messenger', 'Messenger'), ('x', 'X (Twitter)'), ('youtube', 'YouTube'), ('tiktok', 'TikTok'),
+              ('snapchat', 'Snapchat'), ('linkedin', 'LinkedIn'), ('pinterest', 'Pinterest'), ('reddit', 'Reddit'), ('telegram', 'Telegram'), ('discord', 'Discord'),
+              ('slack', 'Slack'), ('line', 'LINE'), ('wechat', 'WeChat'), ('kakaotalk', 'KakaoTalk'), ('naver', 'NAVER'), ('github', 'GitHub'), ('gitlab', 'GitLab'),
+              ('figma', 'Figma'), ('notion', 'Notion'), ('dropbox', 'Dropbox'), ('trello', 'Trello'), ('jira', 'Jira'), ('spotify', 'Spotify'), ('netflix', 'Netflix'),
+              ('twitch', 'Twitch'), ('amazon', 'Amazon'), ('android', 'Android'), ('windows', 'Windows'), ('chrome', 'Chrome'), ('firefox', 'Firefox'),
+              ('paypal', 'PayPal'), ('stripe', 'Stripe'), ('wordpress', 'WordPress'), ('docker', 'Docker'), ('kubernetes', 'Kubernetes'), ('python', 'Python'),
+              ('nodejs', 'Node.js'), ('react', 'React'), ('openai', 'OpenAI'), ('npm', 'npm'), ('vercel', 'Vercel'), ('medium', 'Medium'), ('behance', 'Behance'),
+              ('dribbble', 'Dribbble'), ('zoom', 'Zoom')]
+brands = []
+for key, label in BRAND_LIST:
+    icons, srcs = [], []
+    for prefix, pat, lab in BRAND_SRC:
+        if len(icons) >= BRAND_N: break
+        j, info, ver = cache[prefix]
+        n = pat.format(b=key)
+        ic = j['icons'].get(n)
+        if not ic or ic.get('hidden'): continue
+        W, H = j.get('width', 16), j.get('height', 16)
+        vb = f"{ic.get('left', 0)} {ic.get('top', 0)} {ic.get('width', W)} {ic.get('height', H)}"
+        lic = info['license']
+        icons.append([f'{prefix}-{n}', vb, ic['body'], f"{lab} · {lic['spdx']}"])
+        srcs.append(prefix)
+    off = OFFICIAL.get(key, (None, None))
+    meta = dict(id='brand-' + key, name=label, set=label + ' 로고 모음', prefix='brand', cat='brand', color=False, count=len(icons),
+                author='여러 오픈소스 세트', url=off[0], license='세트별 상이', spdx='mixed', licenseUrl=None, version='2026-11-14',
+                official=off[0], officialNote=off[1], sources=sorted(set(srcs)), pop={})
+    json.dump(dict(meta=meta, icons=icons), open(f"{OUT}/brand-{key}.json", 'w'), ensure_ascii=False, separators=(',', ':'))
+    brands.append(dict(meta, sample=icons[:3]))
+index += brands
 json.dump(index, open(f'{OUT}/index.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 print('styles', len(index))
-missing=[m['id'] for m in index if not m['pop']]
+missing=[m['id'] for m in index if not m['pop'] and m['cat'] != 'brand']
 print('nopop', missing)
 for m in index:
-    if m['count'] < 100: print('LOW', m['id'], m['count'])
+    if m['count'] < (10 if m['cat'] == 'brand' else 100): print('LOW', m['id'], m['count'])
 
 # ---- LICENSES.md ----
 L = ['# 아이콘 갤러리 라이선스·출처', '',
@@ -241,16 +354,25 @@ L = ['# 아이콘 갤러리 라이선스·출처', '',
      '## 선정 기준 (신뢰 지표)', '',
      'GitHub 스타 1,000개 이상 **또는** npm 주간 다운로드 10,000회 이상인 세트만 넣었습니다. 2026-11-14 조회 (GitHub: github.com·api.github.com, npm: api.npmjs.org `downloads/point/last-week`).',
      '세트마다 대표 npm 패키지 하나의 수치이며, npm 집계 주간은 패키지별로 조금씩 다를 수 있습니다.', '',
-     '제외한 세트: Streamline 무료 세트(GitHub ★108, npm 주간 107), Teenyicons(npm 주간 210), Majesticons(★190, 주간 582), Akar Icons(★422, 주간 402), Pepicons(★60, 주간 396), Mage Icons(★90, 주간 9,831), Feather Icon fe(★196, 주간 5,430).', '',
+     '제외한 세트: Streamline 무료 세트(GitHub ★108, npm 주간 107), Teenyicons(npm 주간 210), Majesticons(★190, 주간 582), Akar Icons(★422, 주간 402), Pepicons(★60, 주간 396), Mage Icons(★90, 주간 9,831), Feather Icon fe(★196, 주간 5,430), Firefox OS Emoji(★334, 주간 2,939).',
+     'OpenMoji(★4.6k)는 CC BY-SA 4.0(변경 시 같은 조건으로 공유해야 함)이라 상업 이용 조건이 까다로워 제외했습니다.', '',
      '## 스타일별 목록', '',
      '| # | 스타일 | 세트 | 라이선스 | 제작 | GitHub ★ | npm 주간 다운로드 |', '|---|---|---|---|---|---|---|']
-for i, m in enumerate(index, 1):
+for i, m in enumerate([x for x in index if x['cat'] != 'brand'], 1):
     pp = m['pop']
     gh = f"[{pp['stars']}](https://github.com/{pp['repo']})" if pp['repo'] else '-'
     npm = f"[{pp['weekly']:,}](https://www.npmjs.com/package/{pp['npm']}) `{pp['npm']}`" if pp['npm'] else '-'
     home = f"[{m['set']}]({m['url']})" if m['url'] else m['set']
     lic = f"[{m['license']}]({m['licenseUrl']})" if m['licenseUrl'] else m['license']
     L.append(f"| {i} | {m['name']} | {home} | {lic} | {m['author'] or '-'} | {gh} | {npm} |")
+L += ['', '## 브랜드별 로고 모음', '',
+      '브랜드마다 위 오픈소스 세트에서 같은 브랜드 로고를 최대 10종 모았습니다 (컬러 심볼·컬러 로고·단색·라인·필 등). 각 아이콘의 출처 세트와 라이선스는 갤러리 상세 화면과 ZIP의 `LICENSE.txt`에 있습니다.',
+      '**상표 주의**: 파일 라이선스(MIT·CC0 등)는 그림 파일에 대한 것이고, 로고 자체는 각 회사의 등록 상표입니다. 서비스 연동 표시·링크 용도 외 사용은 아래 공식 가이드를 따르세요.',
+      '공식 페이지의 로고 원본은 재배포가 허용되지 않는 경우가 많아 갤러리에 넣지 않고 **링크만** 표기했습니다. 링크는 2026-11-14 접속 확인한 것만 넣었고, 확인하지 못한 곳은 [확인 필요]입니다.', '',
+      '| 브랜드 | 수집 수 | 출처 세트 | 공식 브랜드 자료 |', '|---|---|---|---|']
+for m in [x for x in index if x['cat'] == 'brand']:
+    off = f"[{m['officialNote']}]({m['official']})" if m['official'] else '[확인 필요]'
+    L.append(f"| {m['name']} | {m['count']} | {', '.join(m['sources'])} | {off} |")
 L += ['', '---', '', '¹ CC BY: 크리에이티브 커먼즈 저작자표시. 출처만 밝히면 상업 이용·수정 가능.',
       '² Apache-2.0: 아파치 라이선스. 고지문 유지 조건으로 상업 이용·수정 가능.',
       '³ MIT / ISC: 가장 느슨한 허용 라이선스. 저작권 고지만 유지하면 됨.', '',
